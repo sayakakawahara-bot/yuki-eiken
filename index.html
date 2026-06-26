@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -439,7 +439,7 @@ function useHint(word){
 function hintBlock(q){
   return '<div style="margin-bottom:10px" id="hint-wrap">'+
     '<button class="btn" style="padding:5px 14px;font-size:12px" onclick="useHint(\''+q.w+'\')">💡 ヒントを見る</button>'+
-    '<div id="hint-body" style="display:none;font-size:13px;color:#1976d2;font-weight:500;margin-top:6px">ヒント: '+q.m+'<span class="ipa">'+q.ipa+'</span></div>'+
+    '<div id="hint-body" style="display:none;font-size:13px;color:#1976d2;font-weight:500;margin-top:6px">💡 '+q.w[0]+' '+Array(q.w.length-1).fill('_').join(' ')+'</div>'+
   '</div>';
 }
 
@@ -834,3 +834,4 @@ init();
 </script>
 </body>
 </html>
+
