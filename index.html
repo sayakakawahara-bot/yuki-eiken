@@ -408,17 +408,19 @@ function init(){
   updateHdr();renderDaily();renderKnowList();startVGame();
   calYear=new Date().getFullYear();calMonth=new Date().getMonth();
 }
+function xpNeeded(lv){return lv<=100?20:lv<=200?40:80;}
 function updateHdr(){
+  const need=xpNeeded(D.level);
   document.getElementById('lv-label').textContent='Lv.'+D.level;
-  document.getElementById('lv-bar').style.width=Math.min(100,D.xp/20*100)+'%';
-  document.getElementById('lv-xp').textContent=D.xp+'/20XP';
+  document.getElementById('lv-bar').style.width=Math.min(100,D.xp/need*100)+'%';
+  document.getElementById('lv-xp').textContent=D.xp+'/'+need+'XP';
   document.getElementById('s-correct').textContent=D.totalCorrect;
   document.getElementById('s-words').textContent=avail().length+'/'+W.length;
   document.getElementById('s-streak').textContent=D.streakDays;
 }
 function addXP(n){
   D.xp+=n;
-  if(D.xp>=20&&D.level<100){D.level++;D.xp-=20;showLvUp(D.level);}
+  while(D.level<300&&D.xp>=xpNeeded(D.level)){D.xp-=xpNeeded(D.level);D.level++;showLvUp(D.level);}
   saveD();updateHdr();
 }
 function showLvUp(lv){
